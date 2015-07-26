@@ -20,5 +20,5 @@ Use of a `TSpectrum` to find a second peak in a `TH1F` and remove that part from
 
 Create an animated `.gif` showing the Higgs boson potential (`v*x**2 + x**4`) evolution as `v` becomes negative. 
 
-![test](MexicanHat/result.gif)
+![result from this macro](CreateGIF/result.gif)
 
