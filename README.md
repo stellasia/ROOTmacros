@@ -6,19 +6,19 @@ Some ROOT macro in C++ or Python.
 
 Each folder contains: 
 
-- macro.* : the actual code
-- data.* : data (optional)
-- result.* : the output (optional)
+- `macro.*`  : the actual code
+- `data.*`   : data (optional)
+- `result.*` : the output (optional)
 
 
-## Peak finder in histogram (Python)
+## PeakFinderHistogram (Python)
 
-Use of a `TSpectrum` to find the peaks and remove that part from the initial histogram. 
+Use of a `TSpectrum` to find a second peak in a `TH1F` and remove that part from the initial histogram. 
 
 
-## Higgs boson potential (Mexican hat) (C++)
+## CreateGIF : example fo the "Mexican hat" function (C++)
 
-Create an animated gif showing the Higgs boson potential (v.x2 + x4) evolution as v becomes negative. 
+Create an animated `.gif` showing the Higgs boson potential (`v*x**2 + x**4`) evolution as `v` becomes negative. 
 
 ![test](MexicanHat/result.gif)
 
