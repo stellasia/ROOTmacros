@@ -2,6 +2,9 @@
 
 Some ROOT macro in C++ or Python. 
 
+Note that the macros presented here are tested for **`root-6.04.02`**. 
+
+
 ## Package organisation 
 
 Each folder contains: 
