@@ -3,10 +3,14 @@
 """
 Translated from the C++ macro at
 https://root.cern.ch/drupal/content/how-find-peaks-histograms
+
+Usage: python -i macro.py
 """
 
 import ROOT as rt
 from array import array
+
+rt.gStyle.SetOptStat(0)
 
 # # randomly fill a multi-peaked histogram
 # rt.gRandom.SetSeed(1234)
@@ -26,11 +30,11 @@ from array import array
 # h.Add(h1)
 # h.Add(h1b)
 
+f = open("./data.txt", "r")
+lines = f.readlines()
 
 h = rt.TH1F("h", "h", 40, 0, 4000)
-f = open("/home/estelle/Téléchargements/obs_test.csv", "r")
-lines = f.readlines()
-data = array("d", map(lambda x: float(x.split(",")[1]), lines))
+data = array("d", map(float, lines))
 weights = array("d", [1.0]*len(lines)) # unit weights
 h.FillN(len(lines), data, weights)
 
@@ -46,6 +50,7 @@ print "Histo stats"
 print "mean", hmean
 print "med", hmed
 print "std", hstd
+
 
 # peak finder with TSpectrum.Search
 npeaks = 3
@@ -73,6 +78,12 @@ fit = functions.FindObject("g1")
 
 c = rt.TCanvas("c", "c", 800, 600)
 h.SetLineColor(rt.kBlue)
+h.SetLineWidth(2)
+h.SetTitle("")
+h.SetXTitle("x")
+h.SetYTitle("Entries")
+h.SetFillStyle(3005)
+h.SetFillColor(rt.kGreen+2)
 h.Draw("")
 pm.SetMarkerSize(2)
 pm.Draw()
@@ -87,9 +98,20 @@ for b in range(bin_limit, hb.GetXaxis().GetNbins()):
     hb.SetBinContent(b, 0)
 #hb.GetXaxis().SetRangeUser(0,)
 hb.SetLineColor(rt.kGreen+2)
+hb.SetLineWidth(2)
 hb.Draw("same")
+
+# legend
+l = rt.TLegend(0.6, 0.8, .99, .99)
+l.AddEntry(hb, "Full histo", "lf")
+l.AddEntry(pm, "Identified peaks", "p")
+l.AddEntry(fit, "Gaussian fit of second peak", "l")
+l.AddEntry(h, "Second peak", "l")
+l.Draw()
 
 print "New hist stats"
 hb.GetQuantiles(N, res, q)
 hmed = res[0]
 print "med", hmed
+
+c.SaveAs("result.png")

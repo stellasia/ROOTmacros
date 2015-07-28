@@ -18,6 +18,8 @@ Each folder contains:
 
 Use of a `TSpectrum` to find a second peak in a `TH1F` and remove that part from the initial histogram. 
 
+![result from this macro](PeakFinderHistogram/result.png)
+
 
 ## CreateGIF : example fo the "Mexican hat" function (C++)
 
